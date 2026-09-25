@@ -1,0 +1,7 @@
+Keeps PurgeJob out of the Silverstripe class manifest.
+
+PurgeJob extends a class from silverstripe/queuedjobs, which is a suggestion
+and not a requirement. The config layer reflects every class in the manifest,
+and reflecting a class whose parent is absent is a fatal error. Composer still
+autoloads this directory under PSR-4, so PurgeDispatcher reaches the job by
+name on a site that has queuedjobs.

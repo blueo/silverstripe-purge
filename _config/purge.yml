@@ -1,0 +1,18 @@
+---
+Name: blueo-purge
+---
+SilverStripe\Core\Injector\Injector:
+  # Replaced by a provider module. Without one, every purge call throws and
+  # names the missing provider, because a site that believes it purged is the
+  # failure this module exists to prevent.
+  Blueo\Purge\Service\PurgeAdaptor:
+    class: Blueo\Purge\Service\NullPurgeAdaptor
+
+---
+Name: blueo-purge-triggers
+Only:
+  moduleexists: 'silverstripe/cms'
+---
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    blueo-purge: Blueo\Purge\Extension\PurgeOnPublishExtension
