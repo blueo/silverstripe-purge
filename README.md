@@ -39,15 +39,6 @@ composer require blueo/silverstripe-purge-cloudfront
 sake dev/build flush=1
 ```
 
-Neither package is on Packagist, so the site needs the repositories as well:
-
-```json
-"repositories": [
-    {"type": "vcs", "url": "https://github.com/blueo/silverstripe-purge.git"},
-    {"type": "vcs", "url": "https://github.com/blueo/silverstripe-purge-cloudfront.git"}
-]
-```
-
 Install a provider at the same time. See
 [available provider modules](#available-provider-modules).
 
