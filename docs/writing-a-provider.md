@@ -74,6 +74,14 @@ SilverStripe\Core\Injector\Injector:
       api_key: '`PURGE_MYPROVIDER_API_KEY`'
 ```
 
+A gate is answered once, when the config manifest is built, and the answer is
+cached with it. A manifest built before the variable existed keeps the
+`NullPurgeAdaptor` whatever the environment says afterwards, and the site then
+purges nothing while reporting nothing. Say so in the provider's README, and
+tell anyone baking a manifest into a container image to set a placeholder for
+the build. Read the real value at call time rather than at bind time, so the
+placeholder cannot be used for anything.
+
 `After: '#blueo-purge'` puts the block after the core block, which binds
 `NullPurgeAdaptor`.
 

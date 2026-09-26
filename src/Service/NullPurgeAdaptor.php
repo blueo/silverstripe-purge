@@ -41,7 +41,11 @@ class NullPurgeAdaptor implements PurgeAdaptor
     {
         return new UnsupportedOperationException(sprintf(
             '%s was asked for, and no purge provider is installed. Install a provider module, '
-                . 'for example blueo/silverstripe-purge-cloudfront, and set the environment variable it reads.',
+                . 'for example blueo/silverstripe-purge-cloudfront, and set the environment variable it reads. '
+                . 'If a provider IS installed and its variable IS set, the config manifest was built before '
+                . 'the variable existed: a provider binds itself through an Only: envvarset gate, and that test '
+                . 'is recorded in the cached manifest rather than repeated on each request. Flush it. An image '
+                . 'that bakes the manifest at build time must set the variable for the bake as well.',
             $capability->getLabel()
         ));
     }
